@@ -1,17 +1,12 @@
 
-# document = ['"Come on you spurs"']
-document = "Come on you, Spurs"
-def tokenize(words):
-   list = []
-   new_document = words.split()
-  # for line in words:
-   #  words.split()
-   for x in new_document:
-      list.append(x)
-   
-   return list
+def tokenize(lines):
+    words = []
+    for line in lines:
+         start = 0
+         while start < len(line):
+            print(line[start])
+            start = start+1
 
-print(tokenize(document))
-
+print(tokenize("I am, cool!"))
 
 
