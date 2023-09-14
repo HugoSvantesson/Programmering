@@ -1,12 +1,17 @@
 import wordfreq
 import sys 
+import urllib.request
 
 
 
 def main():
 
-    file_toRead = open(sys.argv[2])
-    words = wordfreq.tokenize(file_toRead)
+    if sys.argv[2].startswith("http://" or "https://"):
+        response = urllib.request.urlopen(sys.argv[2])
+        words = wordfreq.tokenize(response.read().decode("utf8").splitlines())
+    else:
+        file_toRead = open(sys.argv[2])
+        words = wordfreq.tokenize(file_toRead)
 
     stopwordsfile = open(sys.argv[1], encoding="utf-8")
     stopwords = stopwordsfile.readlines()
@@ -22,5 +27,5 @@ def main():
 
     stopwordsfile.close()
     
-
 main()
+
